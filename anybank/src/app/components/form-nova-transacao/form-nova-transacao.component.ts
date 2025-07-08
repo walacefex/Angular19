@@ -12,14 +12,15 @@ export class FormNovaTransacaoComponent {
   tipoTransacao = '';
   valorTransacao = '';
 
-  transacaoCriada = output();
+  transacaoCriada = output<Transacao>();
 
   aoSubmeter() {
     const transacao = new Transacao(
       this.tipoTransacao as TipoTransacao,
       Number(this.valorTransacao)
     );
-    this.transacaoCriada.emit();
+
+    this.transacaoCriada.emit(transacao);
     this.tipoTransacao = '';
     this.valorTransacao = '';
   }
