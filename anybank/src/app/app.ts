@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { BannerComponent } from './components/banner/banner.component';
 import { FormNovaTransacaoComponent } from './components/form-nova-transacao/form-nova-transacao.component';
 import { Transacao } from './modelos/transacao';
@@ -10,8 +10,9 @@ import { Transacao } from './modelos/transacao';
   styleUrl: './app.css',
 })
 export class App {
-  protected title = 'anybank';
+  transacoes = signal<Transacao[]>([]);
+
   processarTransacao(transacao: Transacao) {
-    console.log(transacao);
+    this.transacoes.update((listaAtual) => [transacao, ...listaAtual]);
   }
 }
