@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -11,10 +11,10 @@ export class FormNovaTransacaoComponent {
   tipoTransacao = '';
   valorTransacao = '';
 
-  aoSubmeter() {
-    console.log(this.tipoTransacao);
-    console.log(this.valorTransacao);
+  transacaoCriada = output();
 
+  aoSubmeter() {
+    this.transacaoCriada.emit();
     this.tipoTransacao = '';
     this.valorTransacao = '';
   }

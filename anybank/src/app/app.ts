@@ -10,4 +10,7 @@ import { FormNovaTransacaoComponent } from './components/form-nova-transacao/for
 })
 export class App {
   protected title = 'anybank';
+  processarTransacao() {
+    console.log('Transação processada');
+  }
 }
