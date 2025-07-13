@@ -1,12 +1,13 @@
-import { CurrencyPipe, DatePipe } from '@angular/common';
-import { Component, computed, input } from '@angular/core';
-import { TipoTransacao, Transacao } from '../../compartilhados/transacao.model';
+import { CurrencyPipe, DatePipe } from "@angular/common";
+import { Component, computed, input } from "@angular/core";
+import { DestaqueValorNumericoDirective } from "../../../compartilhados/destaque-valor-numerico.directive";
+import { TipoTransacao, Transacao } from "../../compartilhados/transacao.model";
 
 @Component({
-  selector: 'app-transacao',
-  imports: [CurrencyPipe, DatePipe],
-  templateUrl: './transacao.component.html',
-  styleUrl: './transacao.component.css'
+  selector: "app-transacao",
+  imports: [CurrencyPipe, DatePipe, DestaqueValorNumericoDirective],
+  templateUrl: "./transacao.component.html",
+  styleUrl: "./transacao.component.css",
 })
 export class TransacaoComponent {
   transacao = input.required<Transacao>();
