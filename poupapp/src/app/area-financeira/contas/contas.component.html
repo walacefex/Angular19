@@ -1,5 +1,6 @@
 <app-card>
   <h2 card-titulo class="texto-lg">Minhas contas</h2>
+
   <div class="contas-e-botao">
     <ul>
       @for (conta of contas(); track conta.nome) {
@@ -11,9 +12,8 @@
       }
     </ul>
 
-    <app-botao class="botao-adicionar-conta">
-      <img src="icones/carteira.svg" alt="carteira" class="icone-carteira" />
-      Adicionar conta
-    </app-botao>
+    <app-botao-adicionar-conta
+      class="botao-adicionar-conta"
+      (contaCriada)="contaCriada.emit($event)" />
   </div>
 </app-card>

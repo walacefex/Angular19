@@ -9,29 +9,36 @@
     <h2 class="text-xl">Adicionar transação</h2>
   </ng-container>
 
-  <form class="form text-md">
+  <form class="form text-md" (ngSubmit)="aoSubmeter()" ngNativeValidate>
     <label class="label-grupo">
       Nome da transação
-      <input class="input" type="text" name="nome-transacao" />
+      <input
+        [(ngModel)]="novaTransacaoForm.nome"
+        class="input"
+        type="text"
+        name="nome-transacao" />
     </label>
 
     <fieldset class="grupo-tipo-transacao" required>
       <legend class="legend">Tipo da transação</legend>
 
+      @for (tipo of tiposTransacao | keyvalue; track tipo.key) {
       <label class="label-grupo-radio">
-        <input type="radio" name="tipo-transacao" required />
-        Saque
+        <input
+          [(ngModel)]="novaTransacaoForm.tipo"
+          [value]="tipo.value"
+          type="radio"
+          name="tipo-transacao"
+          required />
+        {{ tipo.value }}
       </label>
-
-      <label class="label-grupo-radio">
-        <input type="radio" name="tipo-transacao" required />
-        Depósito
-      </label>
+      }
     </fieldset>
 
     <label class="label-grupo">
       Valor
       <input
+        [(ngModel)]="novaTransacaoForm.valor"
         class="input"
         type="number"
         name="valor-transacao"
@@ -43,20 +50,27 @@
 
     <label class="label-grupo">
       Data da transação
-      <input class="input" type="date" name="data-transacao" required />
+      <input
+        [(ngModel)]="novaTransacaoForm.data"
+        class="input"
+        type="date"
+        name="data-transacao"
+        required />
     </label>
 
     <label class="label-grupo">
       Conta Bancária
 
       <select
+        [(ngModel)]="novaTransacaoForm.conta"
         name="conta-transacao"
         class="input select-conta-transacao"
         required>
         <option value="" selected disabled>Selecione a conta</option>
 
-        <option value="Anybank">Anybank</option>
-        <option value="Bytebank">Bytebank</option>
+        @for (conta of contas(); track conta.nome) {
+        <option [value]="conta.nome">{{ conta.nome }}</option>
+        }
       </select>
     </label>
 
